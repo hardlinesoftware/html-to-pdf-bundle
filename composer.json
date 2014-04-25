@@ -3,10 +3,14 @@
     "type": "symfony-bundle",
     "description": "Convert HTML to PDF in Symfony",
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+
+        "mikehaertl/phpwkhtmltopdf": "1.2.*",
+        "h4cc/wkhtmltopdf-amd64": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "mikey179/vfsStream": "1.3.*"
     },
     "authors": [
         {
@@ -17,7 +21,7 @@
     "keywords": ["pdf", "pdf-to-html"],
     "autoload": {
         "psr-4": {
-            "EP\\Bundle\\HtmlToPdfBundle\\": ""
+            "EP\\Bundle\\HtmlToPdfBundle\\": ["", "tests/"]
         }
     }
 }
