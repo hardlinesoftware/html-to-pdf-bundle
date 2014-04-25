@@ -1,0 +1,7 @@
+parameters:
+#    ep_html_to_pdf.example.class: EP\Bundle\HtmlToPdfBundle\Example
+
+services:
+#    ep_html_to_pdf.example:
+#        class: %ep_html_to_pdf.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

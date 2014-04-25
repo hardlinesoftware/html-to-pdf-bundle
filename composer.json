@@ -1,0 +1,23 @@
+{
+    "name": "eventpad/html-to-pdf-bundle",
+    "type": "symfony-bundle",
+    "description": "Convert HTML to PDF in Symfony",
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "authors": [
+        {
+            "name": "Adam Quaile",
+            "email": "adamquaile@gmail.com"
+        }
+    ],
+    "keywords": ["pdf", "pdf-to-html"],
+    "autoload": {
+        "psr-4": {
+            "EP\\Bundle\\HtmlToPdfBundle\\": ""
+        }
+    }
+}
