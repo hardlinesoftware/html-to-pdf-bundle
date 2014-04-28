@@ -1,7 +1,13 @@
 parameters:
-#    ep_html_to_pdf.example.class: EP\Bundle\HtmlToPdfBundle\Example
+    ep_html_to_pdf.converter.class: EP\Bundle\HtmlToPdfBundle\Converter
 
 services:
-#    ep_html_to_pdf.example:
-#        class: %ep_html_to_pdf.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    ep_html_to_pdf.converter:
+        class: %ep_html_to_pdf.converter.class%
+        arguments: ["@ep_html_to_pdf.wkhtmltopdf_driver"]
+    ep_html_to_pdf.wkhtmltopdf_driver:
+        class: EP\Bundle\HtmlToPdfBundle\Drivers\WkHtmlToPdfDriver
+        arguments: ["@ep_html_to_pdf.wkhtmltopdf"]
+
+    ep_html_to_pdf.wkhtmltopdf:
+        class: WkHtmlToPdf

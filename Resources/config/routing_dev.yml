@@ -1,0 +1,3 @@
+eventpad_htmltopdf_preflight:
+    pattern: /_debug/html-to-pdf
+    defaults: { _controller: EPHtmlToPdfBundle:Preflight:index }

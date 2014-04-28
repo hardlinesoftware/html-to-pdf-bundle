@@ -39,12 +39,9 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('EP\Bundle\HtmlToPdfBundle\Drivers\DriverInterface', $driver);
     }
 
-    public function testFileIsCreated()
+    private function generatePdf()
     {
         $driver = $this->getDriver();
-        if (!$driver->supportsCurrentPlatform()) {
-            return false;
-        }
 
         $filename = 'root/outfile.pdf';
         $html = '<html></html>';
@@ -55,11 +52,29 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
 
         $driver->generate($html, $file);
 
+        return $filename;
+
+    }
+
+    public function testFileIsCreated()
+    {
+        $filename = $this->generatePdf();
+
         $this->assertTrue(
             $this->root->hasChild($filename),
             sprintf('Driver %s did not create file', $this->getDriverName())
         );
 
+    }
+
+    /**
+     * @depends testFileIsCreated
+     */
+    public function testFileIsNotEmpty()
+    {
+        $filename = $this->generatePdf();
+
+        $this->assertFalse((0 == $this->root->getChild($filename)->size()), 'File is empty!');
     }
 
 

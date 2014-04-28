@@ -8,7 +8,9 @@
         "mikehaertl/phpwkhtmltopdf": "1.2.*",
         "h4cc/wkhtmltopdf-amd64": "*",
         "h4cc/wkhtmltopdf-i386": "*",
-        "symfony/process": "*"
+        "symfony/process": "*",
+        "symfony/dependency-injection": "*",
+        "symfony/http-foundation": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

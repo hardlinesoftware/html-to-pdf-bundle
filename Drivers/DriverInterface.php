@@ -12,6 +12,4 @@ interface DriverInterface
      * @param $outfile
      */
     public function generate($html, $outfile);
-
-    public function supportsCurrentPlatform();
 }
