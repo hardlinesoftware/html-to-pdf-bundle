@@ -42,6 +42,9 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
     public function testFileIsCreated()
     {
         $driver = $this->getDriver();
+        if (!$driver->supportsCurrentPlatform()) {
+            return false;
+        }
 
         $filename = 'root/outfile.pdf';
         $html = '<html></html>';
