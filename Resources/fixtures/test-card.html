@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+    <head>
+        <style type="text/css">
+            body, html, div {
+                padding: 0;
+                margin: 0;
+            }
+            h1, h2, p {
+                padding-left: 0.75cm;
+            }
+            #colours {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                height: 100px;
+            }
+            #colours li {
+                color: #fff;
+                width: 25%;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+            #colours li.cyan {
+                background-color: cyan;
+                left: 0;
+                color: black;
+            }
+            #colours li.magenta {
+                background-color: magenta;
+                left: 25%;
+            }
+            #colours li.yellow {
+                background-color: yellow;
+                left: 50%;
+                color: black;
+            }
+            #colours li.black {
+                background-color: black;
+                left: 75%;
+            }
+            .full-width {
+                width: 100%;
+            }
+
+            .page-break-after {
+                page-break-after: always;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>HTML to PDF Bundle Testcard</h1>
+
+        <h2>Page positioning</h2>
+        <p><em>This should stretch across the entire page, and contain equally sized boxes in Cyan, Magenta, Yellow and Black</em></p>
+        <ul id="colours">
+            <li class="cyan"    >Cyan</li>
+            <li class="magenta" >Magenta</li>
+            <li class="yellow"  >Yellow</li>
+            <li class="black"   >Black</li>
+        </ul>
+
+        <h2>External Image Test</h2>
+        <p><em>Image from placehold.it/</em></p>
+        <img class='full-width' src="http://placehold.it/800x100" />
+
+        <h2>CSS Page-break test...</h2>
+        <p class="page-break-after"><em>A page break should follow this paragraph</em></p>
+
+        <h2>...CSS Page-break continued</h2>
+        <p><em>This should start on a new page</em></p>
+    </body>
+</html>

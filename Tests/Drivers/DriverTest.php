@@ -2,6 +2,7 @@
 
 namespace EP\Bundle\HtmlToPdfBundle\Drivers;
 
+use EP\Bundle\HtmlToPdfBundle\Drivers\Features\SupportsPageMarginsInterface;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 
@@ -39,9 +40,9 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('EP\Bundle\HtmlToPdfBundle\Drivers\DriverInterface', $driver);
     }
 
-    private function generatePdf()
+    private function generatePdf(DriverInterface $driver)
     {
-        $driver = $this->getDriver();
+//        $driver = $this->getDriver();
 
         $filename = 'root/outfile.pdf';
         $html = '<html></html>';
@@ -58,7 +59,7 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
 
     public function testFileIsCreated()
     {
-        $filename = $this->generatePdf();
+        $filename = $this->generatePdf($this->getDriver());
 
         $this->assertTrue(
             $this->root->hasChild($filename),
@@ -72,9 +73,18 @@ abstract class DriverTest extends \PHPUnit_Framework_TestCase
      */
     public function testFileIsNotEmpty()
     {
-        $filename = $this->generatePdf();
+        $filename = $this->generatePdf($this->getDriver());
 
         $this->assertFalse((0 == $this->root->getChild($filename)->size()), 'File is empty!');
+    }
+
+    public function testPageMarginsInterface()
+    {
+        $driver = $this->getDriver();
+        if ($driver instanceof SupportsPageMarginsInterface) {
+            $driver->setPageMargins(0, 0, 0, 0);
+            $this->generatePdf($driver);
+        }
     }
 
 

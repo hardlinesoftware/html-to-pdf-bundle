@@ -2,9 +2,11 @@
 
 namespace EP\Bundle\HtmlToPdfBundle\Drivers;
 
+use EP\Bundle\HtmlToPdfBundle\Drivers\Exceptions\GenerationException;
+use EP\Bundle\HtmlToPdfBundle\Drivers\Features\SupportsPageMarginsInterface;
 use Symfony\Component\Process\Process;
 
-class WkHtmlToPdfDriver implements DriverInterface
+class WkHtmlToPdfDriver implements DriverInterface, SupportsPageMarginsInterface
 {
     private $binaryPath;
 
@@ -12,6 +14,19 @@ class WkHtmlToPdfDriver implements DriverInterface
      * @var \WkHtmlToPdf
      */
     private $converter;
+
+    private $margins;
+
+    public function setPageMargins($top, $right, $bottom, $left)
+    {
+        $this->options += [
+            'margin-top'    => $top,
+            'margin-right'  => $right,
+            'margin-bottom' => $bottom,
+            'margin-left'   => $left
+        ];
+    }
+
 
     public function __construct(\WkHtmlToPdf $converter = null)
     {
@@ -44,11 +59,13 @@ class WkHtmlToPdfDriver implements DriverInterface
 
 
         if (is_null($converter)) {
-            $converter = new \WkHtmlToPdf([
-                'binPath'   => $this->binaryPath
-            ]);
+            $converter = new \WkHtmlToPdf();
         }
+
         $this->converter = $converter;
+        $this->options = [
+            'binPath'       => $this->binaryPath
+        ];
     }
 
     /**
@@ -68,8 +85,16 @@ class WkHtmlToPdfDriver implements DriverInterface
      */
     public function generate($html, $outfile)
     {
+        $this->converter->setOptions($this->options);
+
         $this->converter->addPage($html);
-        $this->converter->saveAs($outfile);
+        $success = $this->converter->saveAs($outfile);
+
+        if (!$success) {
+            throw new GenerationException($this->converter->getError());
+        }
+
+        return true;
     }
 
 

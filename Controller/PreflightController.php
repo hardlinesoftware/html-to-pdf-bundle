@@ -14,6 +14,8 @@ class PreflightController implements ContainerAwareInterface
      */
     private $container;
 
+    private $fixtureNames = ['simple', 'test-card'];
+
     private $fixtures = [];
     /**
      * Sets the Container.
@@ -27,14 +29,14 @@ class PreflightController implements ContainerAwareInterface
         $this->container = $container;
         $fixtureDir = __DIR__ . '/../Resources/fixtures/';
 
-        foreach (['simple'] as $htmlSource) {
+        foreach ($this->fixtureNames as $htmlSource) {
 
             $this->fixtures[$htmlSource] = $fixtureDir . $htmlSource . '.html';
         }
     }
 
 
-    public function indexAction()
+    public function generateFromFixturesAction($fixture)
     {
 
         /**
@@ -44,9 +46,9 @@ class PreflightController implements ContainerAwareInterface
 
         $tempFile = $this->tempFileName();
 
-        $converter->generate(file_get_contents($this->fixtures['simple']), $tempFile);
+        $converter->generate(file_get_contents($this->fixtures[$fixture]), $tempFile);
 
-        var_dump($tempFile);exit;
+//        var_dump($tempFile);exit;
 
         $response = new Response(file_get_contents($tempFile), Response::HTTP_OK, [
             'Content-type' => 'application/pdf'

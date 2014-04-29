@@ -1,3 +1,6 @@
-eventpad_htmltopdf_preflight:
-    pattern: /_debug/html-to-pdf
+eventpad_htmltopdf_preflight_test:
+    pattern: /test/{fixture}
+    defaults: { _controller: EPHtmlToPdfBundle:Preflight:generateFromFixtures }
+eventpad_htmltopdf_preflight_index:
+    pattern: /
     defaults: { _controller: EPHtmlToPdfBundle:Preflight:index }

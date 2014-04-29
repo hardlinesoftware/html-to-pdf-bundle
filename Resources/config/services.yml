@@ -8,6 +8,9 @@ services:
     ep_html_to_pdf.wkhtmltopdf_driver:
         class: EP\Bundle\HtmlToPdfBundle\Drivers\WkHtmlToPdfDriver
         arguments: ["@ep_html_to_pdf.wkhtmltopdf"]
+        calls:
+            - [setPageMargins, [0,0,0,0]]
 
     ep_html_to_pdf.wkhtmltopdf:
         class: WkHtmlToPdf
+
