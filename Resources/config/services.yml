@@ -4,12 +4,14 @@ parameters:
 services:
     ep_html_to_pdf.converter:
         class: %ep_html_to_pdf.converter.class%
-        arguments: ["@ep_html_to_pdf.wkhtmltopdf_driver"]
+        arguments: ["@ep_html_to_pdf.mpdf_driver"]
     ep_html_to_pdf.wkhtmltopdf_driver:
         class: EP\Bundle\HtmlToPdfBundle\Drivers\WkHtmlToPdfDriver
         arguments: ["@ep_html_to_pdf.wkhtmltopdf"]
         calls:
             - [setPageMargins, [0,0,0,0]]
+    ep_html_to_pdf.mpdf_driver:
+        class: EP\Bundle\HtmlToPdfBundleMPdfDriver\MPdfDriver
 
     ep_html_to_pdf.wkhtmltopdf:
         class: WkHtmlToPdf
