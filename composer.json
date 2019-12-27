@@ -1,5 +1,5 @@
 {
-    "name": "eventpad/html-to-pdf-bundle",
+    "name": "hardlinesoftware/html-to-pdf-bundle",
     "type": "symfony-bundle",
     "description": "Convert HTML to PDF in Symfony",
     "require": {
@@ -14,7 +14,7 @@
         "mikey179/vfsStream": "1.2.*"
     },
     "suggest": {
-        "eventpad/html-to-pdf-bundle-driver-mpdf": "Generate PDFs using the mPDF driver"
+        "hardlinesoftware/html-to-pdf-bundle-driver-mpdf": "Generate PDFs using the mPDF driver"
     },
     "authors": [
         {
